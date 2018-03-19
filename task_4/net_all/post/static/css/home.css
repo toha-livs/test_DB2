@@ -1,0 +1,68 @@
+#shapka {
+    background-color: #516ec1;
+
+}
+#logout {
+    color: #f2f2f2;
+}
+#kartinka img{
+    height: 300px;
+    width: 500px;
+}
+#all_1 {
+    padding: 0;
+}
+#all_2 {
+    padding: 0;
+}
+#one_post {
+    padding: 0;
+    margin: 15px 0;
+    border-radius: 10px;
+    border: 3px;
+    background-color: #f0f0f0;
+}
+#show_post {
+    height:48px;
+    font-size: 27px;
+    color: #3d62b7;
+}
+#titlee {
+    font-size: 30px;
+    color: #3c763d;
+}
+.glyphicon-heart {
+    font-size: 24px;
+    color: #da2828;
+}
+#likes {
+    border: 0;
+    background-color: #f0f0f0;
+    padding-top: 9px;
+}
+#col_like {
+    color: #005ed2;
+    font-size: 26px;
+}
+#username {
+    color: #fff;
+}
+#home {
+
+}
+#search {
+    margin-top: 50px;
+}
+#search_1 {
+    margin-top: 50px;
+}
+#poisk {
+    margin-top: 30px;
+}
+#levo {
+    background-color: #f0f0f0;
+    margin-top: 15px;
+    border-radius: 10px;
+    margin-left: 2%;
+    height: 233px;
+}

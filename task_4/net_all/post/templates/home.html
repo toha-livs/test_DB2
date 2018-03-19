@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css">
+    {%load staticfiles%}
+    <link rel="stylesheet" href="{% static 'css/home.css' %}"/>
+</head>
+<body>
+<div class="col-xs-12" id="shapka">
+    <div class="row">
+        <div class="col-xs-3 text-center">
+            <h1><strong>test.org</strong></h1>
+        </div>
+        <a class="col-xs-6 text-center" href="/home/" id="home">
+            <h1>HOME</h1>
+        </a>
+        <a class="col-xs-3 text-center" href="/logout/">
+            <h1 id="logout"> logout <span class="glyphicon glyphicon-log-out"></span></h1>
+        </a>
+    </div>
+</div>
+<div class="col-xs-12">
+    <div class="row">
+        <div class="col-xs-3 text-center" id="levo">
+            <div class="text-center">
+                <h3>Поиск</h3>
+            </div>
+            <form action="" method="POST">
+            {% csrf_token %}
+                <div class="col-xs-5">
+                    <input name="country" class="form-control" id="search" placeholder="country">
+                </div>
+                <div class="col-xs-5 col-xs-offset-1">
+                    <input name="city" class="form-control" id="search_1" placeholder="city">
+                </div>
+                <button type="submit" class="btn btn-default" id="poisk">
+                    поиск
+                </button>
+            </form>
+        </div>
+        <div class="col-xs-6 text-center" id="all_1">
+            <div class="col-xs-10 col-xs-offset-1" id="all_2">
+            {% for post in posts%}
+            {# Each "contact" is a Contact model object. #}
+                <div class="col-xs-12" id="one_post">
+                    <div class="col-xs-12">
+                        <p id="titlee"> <strong>{{post.title}}</strong></p>
+                    </div>
+                    <div class="col-xs-12" id="kartinka">
+                        <img src="{{post.img}}">
+                    </div>
+                    <div class="col-xs-12">
+                        <p>{{ post.body }}</p>
+                    </div>
+                        <a href="like_click/{{post.id}}" value="{{post.id}}" name="like" type="submit" class="col-xs-3 col-xs-offset-1" id="likes">
+                            <p><span class="glyphicon glyphicon-heart"></span>
+                                <strong id="col_like">+ {{ post.num_likes }}</strong></p>
+                        </a>
+                    <a class="col-xs-3 col-xs-offset-5" href="127.0.0.1:8000/post/{{post.id}}/" id="show_post">
+                        <big><span class="glyphicon glyphicon-share"></span></big>
+                    </a>
+                </div>
+            {% endfor %}
+            <div class="pagination">
+                    <span class="step-links">
+                        {% if posts.has_previous %}
+                            <a class="btn btn-warning" href="?page={{ posts.previous_page_number }}" id="previous"><span class="glyphicon glyphicon-arrow-left"></span></a>
+                        {% endif %}
+
+                    <span class="current">
+                        Page <strong>{{ posts.number }}</strong> of  <strong>{{ posts.paginator.num_pages }} </strong>.
+                    </span>
+
+                    {% if posts.has_next %}
+                        <a class="btn btn-warning" href="?page={{ posts.next_page_number }}" id="next"><span class="glyphicon glyphicon-arrow-right"></span></a>
+                    {% endif %}
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
+</body>
+</html>

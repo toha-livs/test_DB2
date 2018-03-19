@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css">
+    {%load staticfiles%}
+    <link rel="stylesheet" href="{% static 'css/post.css' %}"/>
+</head>
+<body>
+<div class="col-xs-12" id="shapka">
+    <div class="row">
+        <div class="col-xs-3 text-center">
+            <h1><strong>test.org</strong></h1>
+        </div>
+        <a class="col-xs-5 text-center" href="/home/">
+            <h1 id="home"><strong><span id="dom" class="glyphicon glyphicon-home"></span> home</strong></h1>
+        </a>
+        <a class="col-xs-3 text-center col-xs-offset-1" href="/logout/">
+            <h1 id="logout">logout <span class="glyphicon glyphicon-log-out"></span></h1>
+        </a>
+    </div>
+</div>
+<div class="col-xs-12">
+    <div class="row">
+        <div class="col-xs-8 text-center" id="all_1">
+                <div class="col-xs-12" id="one_post">
+                    <div class="col-xs-12">
+                        <div class="col-xs-6 col-xs-offset-3 text-center" id="title_1">
+                            <p id="title_2"> <strong>{{post.title}}</strong></p>
+                        </div>
+                    </div>
+                    <div class="col-xs-12">
+                        <div class="col-xs-12" id="kartinka">
+                            <img  class="img-thumbnail" src="{{post.img}}">
+                        </div>
+                    </div>
+                    <div class="col-xs-12">
+                        <div class="col-xs-10 col-xs-offset-1 text-center" id="body_1">
+                            <p>{{ post.body }}</p>
+                        </div>
+                    </div>
+                    <div class="col-xs-3 col-xs-offset-1" id="likes">
+                        <p id="txt_like"><span class="glyphicon glyphicon-heart"></span>
+                        + {{ post.num_likes }}</p>
+                    </div>
+                </div>
+        </div>
+        <div class="col-xs-4 text-center">
+            <div class="col-xs-12" id="bord_for_com">
+                <h3>Comments</h3>
+                {% for comment in comments %}
+                {# Each "comment" is a Contact model object. #}
+                <div class="col-xs-10 col-xs-offset-1" id="com">
+                    {{comment.body}}
+                </div>
+                {% endfor %}
+                <div class="pagination">
+                    <span class="step-links">
+                        {% if comments.has_previous %}
+                            <a class="btn btn-warning" href="?page={{ comments.previous_page_number }}" id="previous"><span class="glyphicon glyphicon-arrow-left"></span></a>
+                        {% endif %}
+
+                    <span class="current">
+                        Page <strong>{{ comments.number }}</strong> of  <strong>{{ comments.paginator.num_pages }} </strong>.
+                    </span>
+
+                    {% if comments.has_next %}
+                        <a class="btn btn-warning" href="?page={{ comments.next_page_number }}" id="next"><span class="glyphicon glyphicon-arrow-right"></span></a>
+                    {% endif %}
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
+</body>
+</html>
